@@ -13,3 +13,9 @@ class person:
     """
     
  #test edit 1
+    def connect(self, person2):
+        """connect with person 2
+        Args:
+            person2 (person): the other person to connect to
+        """
+    
