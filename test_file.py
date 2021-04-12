@@ -2,9 +2,9 @@
 a test file to see if git is working
 """
 
-class person:
+class Bank:
     """
-    a person in a network
+    A bank with a person's bank account information
     
     Attributes:
         name(str): the name
@@ -12,10 +12,6 @@ class person:
 
     """
     
- #test edit 1
-    def connect(self, person2):
-        """connect with person 2
-        Args:
-            person2 (person): the other person to connect to
-        """
+class Customer:
+    
     
