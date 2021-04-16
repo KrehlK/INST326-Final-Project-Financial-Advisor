@@ -22,6 +22,14 @@ class Bank:
                 account = {"name": name, "Account Number": account_number, 
                            "balance": balance}
                 db.append(account)
+    
+    def transaction(self, action):
+        """
+        an transaction that removes or adds money
+        """
+        self.balance = self.balance + action
+                
+    
                 
                 
                 
@@ -40,11 +48,6 @@ class Customer:
 class Bank_account(Bank):
     
     
-        
-    
-class Transactions:
-    def __init__(self, name)
-        self.name = name
         
         
 class saving(Bank):
