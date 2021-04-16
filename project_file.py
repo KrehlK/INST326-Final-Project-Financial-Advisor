@@ -43,8 +43,18 @@ class Bank:
         # for abdul: is the savings moreso transferring money
         # to savings or adding money?
     
-    def credit:
+    def credit():
         """
+            DOC strings:
+                This method uses the amount of money in a users account and determines if they
+                qualify for a credit card.
+
+            Args:
+                account (user's account)
+
+            Returns:
+                A TRUE if they qualify or a FALSE if they don't? 
+
         1000
         *.8
         _____
