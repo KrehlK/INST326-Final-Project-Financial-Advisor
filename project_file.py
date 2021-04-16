@@ -28,6 +28,9 @@ class Bank:
         an transaction that removes or adds money
         """
         self.balance = self.balance + action
+        
+    def display(self):
+        print()
                 
     
                 
