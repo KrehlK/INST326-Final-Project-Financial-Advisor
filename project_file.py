@@ -12,13 +12,18 @@ class Bank:
 
     """
     def __init__(self, filepath):
-        db = 
+        db = ()
         with open(filpath, 'r', encoding= "UTF-8") as file:
             for line in file:
                 line.split()
                 name =  line[0] + line[1]
                 account_number = line[2]
                 balance = line[3]
+                account = {"name": name, "Account Number": account_number, 
+                           "balance": balance}
+                db.append(account)
+                
+                
                 
         
     
