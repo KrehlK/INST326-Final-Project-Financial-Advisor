@@ -65,19 +65,24 @@ class Bank:
         """
     
 class Customer:
-     """
+    """
     Each customers information with a bank account 
     
     Attributes:
         name(str): the name
         
     """
-    def __init__():
+    def __init__(name, bank_account):
+        self.name = name
+        self.wallet = 0.0
+        self.bank_account = bank_account
     
-       
+    def withdraw():
+        """
+        Withdraws money from the bank account and adds it to the wallet
+        """
 
-
-
-
-
-
+    def deposit():
+        """
+        Deposits money into the bank account and removes it from the wallet
+        """
