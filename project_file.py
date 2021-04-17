@@ -26,11 +26,19 @@ class Bank:
     def transaction(self, action):
         """
         an transaction that removes or adds money
+        
+        Args:
+            self: instance of Bank
+            action: a integer that can be negative or positive
         """
         self.balance = self.balance + action
         
     def reciept(self):
         """
+        prints out the status of the bank account
+        
+        Args:
+            self: instance of receipt
         Side effects:
             print(): prints to terminal
         """
@@ -40,28 +48,24 @@ class Bank:
               Balance: {balance}")
         
     def saving(self):
-        # for abdul: is the savings moreso transferring money
-        # to savings or adding money?
+       """ 
+       This Method will be used to keep track of the person’s saving. 
+       In this option, the person will be able to input any other places 
+       they may have their money saved. In this method, the person will also 
+       have the option to input if they withdraw any money
+       
+       """
     
-    def credit():
+    def credit(self, account):
         """
-            DOC strings:
-                This method uses the amount of money in a users account and determines if they
-                qualify for a credit card.
+            This method uses the amount of money in a 
+            users account and determines if they qualify for a credit card.
 
             Args:
-                account (user's account)
+                account:(user's account)
 
             Returns:
                 A TRUE if they qualify or a FALSE if they don't? 
-
-        1000
-        *.8
-        _____
-        800> 200$ 
-        return boolean 
-        (yes)
-        customer can apply credit card
         """
     
 class Customer:
