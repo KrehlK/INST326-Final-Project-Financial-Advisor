@@ -12,7 +12,15 @@ class Bank:
     def __init__(self, filepath):
         self.pd = read_csv("INST326projectdata.csv",
                            sep= "\t", index_col = "Account Number")
-        
+        # self.account_number = 
+        # self.first_name = 
+        # self.last_name =  
+        # self.email = 
+        # self.phone = 
+        # self.balance =  
+        # self.credit = 
+        # self.credit_score = 
+    
         
 
     def transaction(self, action):
