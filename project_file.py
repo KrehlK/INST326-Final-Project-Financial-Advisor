@@ -1,6 +1,4 @@
-""" 
-a test file to see if git is working
-"""
+import pandas as pd
 
 class Bank:
     """
@@ -12,16 +10,10 @@ class Bank:
 
     """
     def __init__(self, filepath):
-        db = ()
-        with open(filpath, 'r', encoding= "UTF-8") as file:
-            for line in file:
-                line.split()
-                name =  line[0] + line[1]
-                account_number = line[2]
-                balance = line[3]
-                account = {"name": name, "Account Number": account_number, 
-                           "balance": balance}
-                db.append(account)
+        self.pd = read_csv("INST326projectdata.csv",
+                           sep= "\t", index_col = "Account Number")
+        
+        
 
     def transaction(self, action):
         """
@@ -67,6 +59,7 @@ class Bank:
             Returns:
                 A TRUE if they qualify or a FALSE if they don't? 
         """
+        
     
 class Customer:
     """
