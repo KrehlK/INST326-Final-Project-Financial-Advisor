@@ -95,3 +95,22 @@ class Customer:
         """
         Deposits money into the bank account and removes it from the wallet
         """
+
+def method():
+    """
+    michael
+    view the current accoount
+    """
+
+def summary():
+    """
+    abdul
+    a view of the bank database
+    """
+
+def checker():
+    """
+    stefan
+    
+    checks if the account number given is a part of the database
+    """
