@@ -103,6 +103,7 @@ def method():
     """
 
 def summary():
+   
     """
     abdul
     a view of the bank database
