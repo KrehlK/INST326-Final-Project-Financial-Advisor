@@ -71,19 +71,19 @@ class Customer:
     
     Attributes:
         account_number(int): user input
-        bank_account: a row of Bank 
+        bankdb: a row of Bank 
         phone(str):
         
     """
-    def __init__(self, account_number, bank_account):
-        self.account_number = bank_account["Account Number"]
+    def __init__(self, account_number, bankdb):
+        self.account_number = bankdb["Account Number"]
         self.wallet = 0.0
-        self.full_name = concat(bank_account["First Name"], " ",
-                                bank_account["Last Name"])
-        self.email = bank_account["Email"]
-        self.phone = bank_account["Phone"]
-        self.balance = bank_account["Balance"]
-        self.credit = bank_account["Credit"]
+        self.full_name = concat(bankdb["First Name"], " ",
+                                bankdb["Last Name"])
+        self.email = bankdb["Email"]
+        self.phone = bankdb["Phone"]
+        self.balance = bankdb["Balance"]
+        self.credit = bankdb["Credit"]
         
     
     def withdraw():
