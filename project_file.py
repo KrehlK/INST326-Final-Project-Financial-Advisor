@@ -76,7 +76,7 @@ class Customer:
         
     """
     def __init__(self, account_number, bankdb):
-        self.account_number = bankdb["Account Number"]
+        self.account_number = bankdb.loc[Account Number]
         self.wallet = 0.0
         self.full_name = concat(bankdb["First Name"], " ",
                                 bankdb["Last Name"])
@@ -113,4 +113,6 @@ def checker():
     stefan
     
     checks if the account number given is a part of the database
+    returns  true or false
+    if  false raise a error
     """
