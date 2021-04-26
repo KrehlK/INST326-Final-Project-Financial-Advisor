@@ -12,14 +12,9 @@ class Bank:
     def __init__(self, filepath):
         self.pd = read_csv("INST326projectdata.csv",
                            sep= "\t", index_col = "Account Number")
-        # self.account_number = 
-        # self.first_name = 
-        # self.last_name =  
-        # self.email = 
-        # self.phone = 
-        # self.balance =  
-        # self.credit = 
-        # self.credit_score = 
+        """
+        
+        """
     
         
 
@@ -67,20 +62,29 @@ class Bank:
             Returns:
                 A TRUE if they qualify or a FALSE if they don't? 
         """
-        
+            
+    
     
 class Customer:
     """
     Each customers information with a bank account 
     
     Attributes:
-        name(str): the name
+        account_number(int): user input
+        bank_account: a row of Bank 
+        phone(str):
         
     """
-    def __init__(name, bank_account):
-        self.name = name
+    def __init__(self, account_number, bank_account):
+        self.account_number = bank_account["Account Number"]
         self.wallet = 0.0
-        self.bank_account = bank_account
+        self.full_name = concat(bank_account["First Name"], " ",
+                                bank_account["Last Name"])
+        self.email = bank_account["Email"]
+        self.phone = bank_account["Phone"]
+        self.balance = bank_account["Balance"]
+        self.credit = bank_account["Credit"]
+        
     
     def withdraw():
         """
