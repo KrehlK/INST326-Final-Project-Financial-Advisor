@@ -97,12 +97,17 @@ class Customer:
         Deposits money into the bank account and removes it from the wallet
         """
 
-def method():
-    """
-    michael
-    view the current accoount
-    """
-
+    def view_account():
+        """
+        michael
+        view the current accoount
+        """
+        print(f'Account Number: {self.account_number}')
+        print(f'Name: {self.full_name}')
+        print(f'Email: {self.email}')
+        print(f'Phone: {self.phone}')
+        print(f'Balance: {self.balance}')
+        print(f'Credit: {self.credit}')
 def summary():
    
     import csv
