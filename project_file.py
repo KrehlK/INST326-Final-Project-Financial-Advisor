@@ -77,14 +77,15 @@ class Customer:
         
     """
     def __init__(self, account_number, bankdb):
+        
         self.account_number = bankdb.loc[Account Number]
-        self.wallet = 0.0
-        self.full_name = concat(bankdb["First Name"], " ",
-                                bankdb["Last Name"])
-        self.email = bankdb["Email"]
-        self.phone = bankdb["Phone"]
-        self.balance = bankdb["Balance"]
-        self.credit = bankdb["Credit"]
+        self.wallet = 
+        self.full_name = concat(bankdb.loc[account_number:"First Name"], " ",
+                                bankdb.loc[account_number:"Last Name"])
+        self.email = bankdb.loc[account_number :"Email"]
+        self.phone = bankdb.loc[account_number: "Phone"]
+        self.balance = bankdb.loc[account_number: "Balance"]
+        self.credit = bankdb.loc[account_number:"Credit"]
         
         #bankdb[bankdb[‘Account Number’] == account_number
     
