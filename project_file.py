@@ -92,13 +92,14 @@ class Customer:
         michael
         view the current accoount
         """
+    
         
-        print(f'Account Number: {self.account_number}')
-        print(f'Name: {self.full_name}')
-        print(f'Email: {self.email}')
-        print(f'Phone: {self.phone}')
-        print(f'Balance: {self.balance}')
-        print(f'Credit: {self.credit}')
+        print(f'Account Number: {self.person[account_num]}')
+        print(f'Name: {self.person[full_name]}')
+        print(f'Email: {self.person[email]}')
+        print(f'Phone: {self.person[phone]}')
+        print(f'Balance: {self.person[balance]}')
+        print(f'Credit: {self.person[credit]}')
         
 def summary():
    
