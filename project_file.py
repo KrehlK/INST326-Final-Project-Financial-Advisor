@@ -75,7 +75,7 @@ class Customer:
         Deposits money into the bank account and removes it from the wallet
         """
         #krehl
-        self.person
+        self.person[]
         
    def saving(self):
        """ 
@@ -91,12 +91,14 @@ class Customer:
         michael
         view the current accoount
         """
+        
         print(f'Account Number: {self.account_number}')
         print(f'Name: {self.full_name}')
         print(f'Email: {self.email}')
         print(f'Phone: {self.phone}')
         print(f'Balance: {self.balance}')
         print(f'Credit: {self.credit}')
+        
 def summary():
    
     import csv
@@ -122,3 +124,29 @@ def checker():
     returns  true or false
     if  false raise a error
     """
+
+def main(filepath):
+    
+def parse_args(arglist):
+    """ Process command line arguments.
+    
+    Expect one mandatory argument (a frequency) and one optional argument,
+    preceded by "-a4" (the value to use as the frequency of A4).
+    
+    Args:
+        arglist (list of str): arguments from the command line.
+    
+    Returns:
+        namespace: the parsed arguments, as a namespace.
+    """
+    parser = ArgumentParser()
+    parser.add_argument("freq", type=float, help="a frequency in Hz")
+    parser.add_argument("-a4", type=float, default=440.0,
+                        help="frequency to use for A4")
+    args = parser.parse_args(arglist)
+    return args
+
+
+if __name__ == "__main__":
+    args = parse_args(sys.argv[1:])
+    main(args.freq, a4=args.a4)
