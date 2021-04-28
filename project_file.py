@@ -18,17 +18,6 @@ class Bank:
         """
     
         
-
-    def transaction(self, action):
-        """
-        an transaction that removes or adds money
-        
-        Args:
-            self: instance of Bank
-            action: a integer that can be negative or positive
-        """
-        self.balance = self.balance + action
-        
     def reciept(self):
         """
         prints out the status of the bank account
@@ -38,19 +27,8 @@ class Bank:
         Side effects:
             print(): prints to terminal
         """
-        print(f"Account Summary\n" +
-              "Account Owner: {name}\n" +
-              "Account Number: {account_number}\n" +
-              "Balance: {balance}")
+        #Abdul
         
-    def saving(self):
-       """ 
-       This Method will be used to keep track of the person’s saving. 
-       In this option, the person will be able to input any other places 
-       they may have their money saved. In this method, the person will also 
-       have the option to input if they withdraw any money
-       
-       """
     
     def credit(self, account):
         """
@@ -63,6 +41,7 @@ class Bank:
             Returns:
                 A TRUE if they qualify or a FALSE if they don't? 
         """
+        #stefan
             
     
     
@@ -78,27 +57,35 @@ class Customer:
     """
     def __init__(self, account_number, bankdb):
         
-        self.account_number = bankdb.loc[Account Number]
-        self.wallet = 
-        self.full_name = concat(bankdb.loc[account_number:"First Name"], " ",
-                                bankdb.loc[account_number:"Last Name"])
-        self.email = bankdb.loc[account_number :"Email"]
-        self.phone = bankdb.loc[account_number: "Phone"]
-        self.balance = bankdb.loc[account_number: "Balance"]
-        self.credit = bankdb.loc[account_number:"Credit"]
+        if checker(account_number) == True:
+            self.person =  bankdb.loc[account_num]
+        else:
+            raise "You have put in the wrong numbers or you dont have an account with us try again"
         
-        #bankdb[bankdb[‘Account Number’] == account_number
     
     def withdraw():
         """
         Withdraws money from the bank account and adds it to the wallet
         """
-
-    def deposit():
+        
+        #michael
+        
+    def deposit(self):
         """
         Deposits money into the bank account and removes it from the wallet
         """
-
+        #krehl
+        self.person
+        
+   def saving(self):
+       """ 
+       This Method will be used to keep track of the person’s saving. 
+       In this option, the person will be able to input any other places 
+       they may have their money saved. In this method, the person will also 
+       have the option to input if they withdraw any money
+       
+       """
+       
     def view_account():
         """
         michael
