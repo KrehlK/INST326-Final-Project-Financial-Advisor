@@ -85,7 +85,7 @@ class Customer:
         self.balance = bankdb["Balance"]
         self.credit = bankdb["Credit"]
         
-        #bankdb[bankdb[‘Account Number’] == account_number]
+        #bankdb[bankdb[‘Account Number’] == account_number
     
     def withdraw():
         """
