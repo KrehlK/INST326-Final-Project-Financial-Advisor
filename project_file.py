@@ -1,4 +1,5 @@
 import pandas as pd
+import csv
 
 class Bank:
     """
@@ -10,7 +11,7 @@ class Bank:
 
     """
     def __init__(self, filepath):
-        self.pd = read_csv("INST326projectdata.csv",
+        self.pd = csv.reader(filepath,
                            sep= "\t", index_col = "Account Number")
         """
         
@@ -37,10 +38,10 @@ class Bank:
         Side effects:
             print(): prints to terminal
         """
-        print(f"Account Summary 
-              Account Owner: {name} 
-              Account Number: {account_number} 
-              Balance: {balance}")
+        print(f"Account Summary\n" +
+              "Account Owner: {name}\n" +
+              "Account Number: {account_number}\n" +
+              "Balance: {balance}")
         
     def saving(self):
        """ 
@@ -97,13 +98,29 @@ class Customer:
         Deposits money into the bank account and removes it from the wallet
         """
 
-def method():
-    """
-    michael
-    view the current accoount
-    """
-
+    def view_account():
+        """
+        michael
+        view the current accoount
+        """
+        print(f'Account Number: {self.account_number}')
+        print(f'Name: {self.full_name}')
+        print(f'Email: {self.email}')
+        print(f'Phone: {self.phone}')
+        print(f'Balance: {self.balance}')
+        print(f'Credit: {self.credit}')
 def summary():
+   
+    import csv
+    
+    with open('INST326projectdata.csv') as csvfile:
+        read_csv = csv.reader(csvfile)
+    print(read_csv)
+
+    for row in read_csv:
+        print(row)
+
+   
     """
     abdul
     a view of the bank database
