@@ -62,21 +62,29 @@ class Customer:
             self.person =  bankdb.loc[account_num]
         else:
             raise "You have put in the wrong numbers or you dont have an account with us try again"
-        
     
     def withdraw():
         """
         Withdraws money from the bank account and adds it to the wallet
+        
         """
         
         #michael
         
-    def deposit(self):
+    def deposit(self, bank):
         """
-        Deposits money into the bank account and removes it from the wallet
+        accesses the 
+        
+        Args:
+            self:
+            bank():
+            
         """
+        
+            
         #krehl
-        self.person[]
+
+        
         
    def saving(self):
        """ 
