@@ -11,15 +11,14 @@ class Bank:
         connections(set of Person): other ppl
 
     """
+    
     def __init__(self, filepath):
         self.pd = csv.reader(filepath,
                            sep= "\t", index_col = "Account Number")
-        """
+
+
         
-        """
-    
-        
-    def reciept(self):
+    def receipt(self):
         """
         prints out the status of the bank account
         
@@ -43,6 +42,11 @@ class Bank:
                 A TRUE if they qualify or a FALSE if they don't? 
         """
         #stefan
+        if self.account >= "500": # initialize self.account
+            return True
+        else:
+            return False
+            
             
     
     
@@ -57,7 +61,7 @@ class Customer:
         
     """
     def __init__(self, account_number, bankdb):
-        
+        self.bankdb = bankdb
         if checker(account_number) == True:
             self.person =  bankdb.loc[account_num]
         else:
@@ -86,7 +90,7 @@ class Customer:
 
         
         
-   def saving(self):
+    def saving(self):
        """ 
        This Method will be used to keep track of the person’s saving. 
        In this option, the person will be able to input any other places 
@@ -100,13 +104,14 @@ class Customer:
         michael
         view the current accoount
         """
+    
         
-        print(f'Account Number: {self.account_number}')
-        print(f'Name: {self.full_name}')
-        print(f'Email: {self.email}')
-        print(f'Phone: {self.phone}')
-        print(f'Balance: {self.balance}')
-        print(f'Credit: {self.credit}')
+        print(f'Account Number: {self.person[account_num]}')
+        print(f'Name: {self.person[full_name]}')
+        print(f'Email: {self.person[email]}')
+        print(f'Phone: {self.person[phone]}')
+        print(f'Balance: {self.person[balance]}')
+        print(f'Credit: {self.person[credit]}')
         
 def summary():
    
@@ -125,7 +130,7 @@ def summary():
     a view of the bank database
     """
 
-def checker():
+def checker(result):
     """
     stefan
     
@@ -133,29 +138,16 @@ def checker():
     returns  true or false
     if  false raise a error
     """
+    col = self.bankdb["Account Number"]
+    for i in col:
+        if result == i:
+            return True
+        else:
+            return False
 
 def main(filepath):
+    b = Bank(filepath)
+    Bob = customer(b)
+    print(Bob.view_account())
     
-def parse_args(arglist):
-    """ Process command line arguments.
     
-    Expect one mandatory argument (a frequency) and one optional argument,
-    preceded by "-a4" (the value to use as the frequency of A4).
-    
-    Args:
-        arglist (list of str): arguments from the command line.
-    
-    Returns:
-        namespace: the parsed arguments, as a namespace.
-    """
-    parser = ArgumentParser()
-    parser.add_argument("freq", type=float, help="a frequency in Hz")
-    parser.add_argument("-a4", type=float, default=440.0,
-                        help="frequency to use for A4")
-    args = parser.parse_args(arglist)
-    return args
-
-
-if __name__ == "__main__":
-    args = parse_args(sys.argv[1:])
-    main(args.freq, a4=args.a4)
