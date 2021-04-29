@@ -43,7 +43,7 @@ class Bank:
                 A TRUE if they qualify or a FALSE if they don't? 
         """
         #stefan
-        if self.account >= account:
+        if self.account >= "500": # initialize self.account
             return True
         else:
             return False
@@ -62,7 +62,7 @@ class Customer:
         
     """
     def __init__(self, account_number, bankdb):
-        
+        self.bankdb = bankdb
         if checker(account_number) == True:
             self.person =  bankdb.loc[account_num]
         else:
@@ -123,7 +123,7 @@ def summary():
     a view of the bank database
     """
 
-def checker():
+def checker(result):
     """
     stefan
     
@@ -131,8 +131,8 @@ def checker():
     returns  true or false
     if  false raise a error
     """
-    col = bankdb["Account Number"]
-    for i in cap:
+    col = self.bankdb["Account Number"]
+    for i in col:
         if result == i:
             return True
         else:
