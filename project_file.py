@@ -28,12 +28,16 @@ class Bank:
         """
         prints out the status of the bank account
         
+        
+        
+        
         Args:
             self: instance of receipt
         Side effects:
             print(): prints to terminal
         """
         #Abdul
+        
         
     
     def credit(self, account):
