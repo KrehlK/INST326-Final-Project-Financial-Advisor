@@ -43,6 +43,11 @@ class Bank:
                 A TRUE if they qualify or a FALSE if they don't? 
         """
         #stefan
+        if self.account >= account:
+            return True
+        else:
+            return False
+            
             
     
     
@@ -126,6 +131,12 @@ def checker():
     returns  true or false
     if  false raise a error
     """
+    col = bankdb["Account Number"]
+    for i in cap:
+        if result == i:
+            return True
+        else:
+            return False
 
 def main(filepath):
     
