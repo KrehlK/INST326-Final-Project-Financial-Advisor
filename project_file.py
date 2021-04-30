@@ -2,19 +2,21 @@ import pandas as pd
 import csv
 from argparse import ArgumentParser
 
+# constants for user input
+MENU_CHOICES = {"display" : 1, "deposit" : 2, "withdraw" : 3, 5 : "exit"}
+
 class Bank:
     """
-    A bank with a person's bank account information
+    A bank's databse with customer account information
     
     Attributes:
         name(str): the name
-        connections(set of Person): other ppl
 
     """
     
     def __init__(self, filepath):
-        self.pd = csv.reader(filepath,
-                           sep= "\t", index_col = "Account Number")
+        self.db = pd.read_csv(filepath,
+                           index_col = "Account Number")
 
 
         
@@ -46,6 +48,20 @@ class Bank:
             return True
         else:
             return False
+
+    def checker(self, account_num):
+        """
+        stefan
+    
+        checks if the account number given is a part of the database
+        returns  true or false
+        if  false raise a error
+        """
+        try:
+            self.db.loc[account_num]
+            return True
+        except KeyError:
+            return False
             
             
     
@@ -60,10 +76,10 @@ class Customer:
         phone(str):
         
     """
-    def __init__(self, account_number, bankdb):
-        self.bankdb = bankdb
-        if checker(account_number) == True:
-            self.person =  bankdb.loc[account_num]
+    def __init__(self, account_num, bankdb):
+        if bankdb.checker(account_num):
+            self.bank = bankdb
+            self.person =  bankdb.db.loc[account_num]
         else:
             raise "You have put in the wrong numbers or you dont have an account with us try again"
     
@@ -99,19 +115,13 @@ class Customer:
        
        """
        
-    def view_account():
+    def view_account(self):
         """
         michael
         view the current accoount
         """
-    
-        
-        print(f'Account Number: {self.person[account_num]}')
-        print(f'Name: {self.person[full_name]}')
-        print(f'Email: {self.person[email]}')
-        print(f'Phone: {self.person[phone]}')
-        print(f'Balance: {self.person[balance]}')
-        print(f'Credit: {self.person[credit]}')
+
+        print(self.person)
         
 def summary():
    
@@ -130,24 +140,33 @@ def summary():
     a view of the bank database
     """
 
-def checker(result):
-    """
-    stefan
-    
-    checks if the account number given is a part of the database
-    returns  true or false
-    if  false raise a error
-    """
-    col = self.bankdb["Account Number"]
-    for i in col:
-        if result == i:
-            return True
-        else:
-            return False
-
 def main(filepath):
     b = Bank(filepath)
-    Bob = customer(b)
-    print(Bob.view_account())
+    #Bob = Customer(112233445566, b)
+    #Bob.view_account()
+
+    repeat = True
+
+    while repeat:
+        print("Enter a choice:")
+        print(f"1. Print Account Numbers")
+        print(f"2. Make a Deposit")
+        print(f"3. Make a Withdrawal")
+        print(f"5. Exit")
+        choice = 0
+
+        try:
+            choice = int(input())
+        except:
+            choice = 0
+
+        if choice == MENU_CHOICES["display"]:
+            for x in b.db.index:
+                try:
+                    print(int(x))
+                except ValueError:
+                    print(x)
+        elif choice == 5:
+            repeat = False
     
-    
+main("data.csv")
