@@ -2,8 +2,11 @@ import pandas as pd
 import csv
 from argparse import ArgumentParser
 
+# ignore pandas chained assignment warning
+pd.options.mode.chained_assignment = None
+
 # constants for user input
-MENU_CHOICES = {"display" : 1, "deposit" : 2, "withdraw" : 3, 5 : "exit"}
+MENU_CHOICES = {"display_all" : 1, "display_one" : 2, "deposit" : 3, "withdraw" : 4, "exit" : 5}
 
 class Bank:
     """
@@ -15,6 +18,7 @@ class Bank:
     """
     
     def __init__(self, filepath):
+        # read csv data into a pandas dataframe
         self.db = pd.read_csv(filepath,
                            index_col = "Account Number")
 
@@ -78,20 +82,25 @@ class Customer:
     """
     def __init__(self, account_num, bankdb):
         if bankdb.checker(account_num):
-            self.bank = bankdb
             self.person =  bankdb.db.loc[account_num]
+            self.balance = float(self.person["Balance"][1:].replace(',', ''))
         else:
             raise "You have put in the wrong numbers or you dont have an account with us try again"
     
-    def withdraw():
+    def withdraw(self, amount):
         """
-        Withdraws money from the bank account and adds it to the wallet
+        Withdraws money from the bank account
         
         """
+        if amount > self.balance:
+            print("Insufficient funds.")
+        else:
+            self.balance -= amount
+            # updates pandas dataframe cell for when customer data is printed
+            self.person.loc["Balance"] = "${:.2f}".format(self.balance)
         
-        #michael
         
-    def deposit(self, bank):
+    def deposit(self, amount):
         """
         accesses the 
         
@@ -100,10 +109,9 @@ class Customer:
             bank():
             
         """
-        
-            
-        #krehl
-
+        self.balance += amount
+        # updates pandas dataframe cell for when customer data is printed
+        self.person.loc["Balance"] = "${:.2f}".format(self.balance)
         
         
     def saving(self):
@@ -120,10 +128,13 @@ class Customer:
         michael
         view the current accoount
         """
-
         print(self.person)
         
 def summary():
+    """
+    abdul
+    a view of the bank database
+    """
    
     import csv
     
@@ -133,40 +144,69 @@ def summary():
 
     for row in read_csv:
         print(row)
-
-   
-    """
-    abdul
-    a view of the bank database
-    """
+    
 
 def main(filepath):
     b = Bank(filepath)
-    #Bob = Customer(112233445566, b)
-    #Bob.view_account()
+    customers = {}
+
+    # create dictionary of Customer objects
+    for account_num in b.db.index:
+        customers[account_num] = Customer(account_num, b)
 
     repeat = True
 
+    # repeatedly prompt menu until they request to exit
     while repeat:
+        # prompt user for a choice
         print("Enter a choice:")
-        print(f"1. Print Account Numbers")
-        print(f"2. Make a Deposit")
-        print(f"3. Make a Withdrawal")
-        print(f"5. Exit")
+        print(f'{MENU_CHOICES["display_all"]}. Print Account Numbers')
+        print(f'{MENU_CHOICES["display_one"]}. Print a Customer\'s Info')
+        print(f'{MENU_CHOICES["deposit"]}. Make a Deposit')
+        print(f'{MENU_CHOICES["withdraw"]}. Make a Withdrawal')
+        print(f'{MENU_CHOICES["exit"]}. Exit')
         choice = 0
 
+        # get user's choice
         try:
             choice = int(input())
         except:
             choice = 0
 
-        if choice == MENU_CHOICES["display"]:
+        # if they want to display account nums
+        if choice == MENU_CHOICES["display_all"]:
             for x in b.db.index:
                 try:
                     print(int(x))
                 except ValueError:
                     print(x)
-        elif choice == 5:
+        # if they want to display one customer's info
+        elif choice == MENU_CHOICES["display_one"]:
+            try:
+                account_num = int(input("Enter an account number to deposit to: "))
+                customers[account_num].view_account()
+            except ValueError:
+                print("Invalid number entered.")
+            except KeyError:
+                print("Account not found.")
+        elif choice == MENU_CHOICES["deposit"]:
+            try:
+                account_num = int(input("Enter an account number to deposit to: "))
+                customers[account_num].deposit(float(input("Enter amount to deposit: ")))
+            except ValueError:
+                print("Invalid number entered.")
+            except KeyError:
+                print("Account not found.")
+        elif choice == MENU_CHOICES["withdraw"]:
+            try:
+                account_num = int(input("Enter an account number to withdraw from: "))
+                customers[account_num].withdraw(float(input("Enter amount to withdraw: ")))
+            except ValueError:
+                print("Invalid number entered.")
+            except KeyError:
+                print("Account not found.")
+        elif choice == MENU_CHOICES["exit"]:
             repeat = False
     
+# hard coded csv file name for now
 main("data.csv")
