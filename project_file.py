@@ -6,7 +6,7 @@ from argparse import ArgumentParser
 pd.options.mode.chained_assignment = None
 
 # constants for user input
-MENU_CHOICES = {"display_all" : 1, "display_one" : 2, "deposit" : 3, "withdraw" : 4, "exit" : 5}
+MENU_CHOICES = {"display_all" : 1, "display_one" : 2, "deposit" : 3, "withdraw" : 4, "saving" :5, "receipt": 6, "exit" : 7}
 
 class Bank:
     """
@@ -23,23 +23,7 @@ class Bank:
                            index_col = "Account Number")
 
 
-        
-    def receipt(self):
-        """
-        prints out the status of the bank account
-        
-        
-        
-        
-        Args:
-            self: instance of receipt
-        Side effects:
-            print(): prints to terminal
-        """
-        #Abdul
-        
-        
-    
+
     def credit(self, account):
         """
             This method uses the amount of money in a 
@@ -77,17 +61,20 @@ class Bank:
 class Customer:
     """
     Each customers information with a bank account 
-    
+
     Attributes:
-        account_number(int): user input
-        bankdb: a row of Bank 
-        phone(str):
-        
+    account_number(int): user input
+    bankdb: a row of Bank 
+    phone(str):
+
     """
     def __init__(self, account_num, bankdb):
         if bankdb.checker(account_num):
             self.person =  bankdb.db.loc[account_num]
-            self.balance = float(self.person["Balance"][1:].replace(',', ''))
+            self.person["Account"] = account_num
+            #self.balance = float(self.person["Balance"][1:].replace(',', ''))
+            self.balance = float(52519.00)
+
         else:
             raise "You have put in the wrong numbers or you dont have an account with us try again"
     
@@ -118,14 +105,63 @@ class Customer:
         self.person.loc["Balance"] = "${:.2f}".format(self.balance)
         
         
-    def saving(self):
-       """ 
-       This Method will be used to keep track of the person’s saving. 
-       In this option, the person will be able to input any other places 
-       they may have their money saved. In this method, the person will also 
-       have the option to input if they withdraw any money
+    def saving(self, amount):
+        hjgjg
+        # need for recipte
+        original_ammount = self.balance
        
-       """
+        """
+        This Method will be used to keep track of the person’s saving. 
+        In this option, the person will be able to input any other places 
+        they may have their money saved. 
+
+        """
+        
+        self.balance += amount
+        self.person.loc["Balance"] = "${:.2f}".format(self.balance)
+       
+    # receipt
+        self.receipt(original_ammount, amount)
+
+         
+    #Abdul
+       
+    def receipt(self, original_amount, amount_change):
+
+            Recipte = input('Do you want Recipte? (yes/no)').lower()
+            if Recipte == 'yes':   # etc.
+                print("Recipte Output:")
+                #print(self.person)
+                
+                R_NAME = self.person[0]
+                R_ACCOUNT = int(self.person[8])
+                R_BALANCE = self.person[4]
+                
+                print("************************************************************")        
+                print("*******************RECEIPT**********************************")
+                print("************************************************************")
+                print("Thank you for the using the bank " + str(R_NAME) + "!")
+                print("")        
+                print("Account: " + str(R_ACCOUNT))
+                print("ORIGINAL BALANCE: " + str(original_amount))  
+                print("DIPOSITED/WITHDRAWAL : " + str(amount_change)) 
+                print("AVALIABLE BALANCE: " + str(R_BALANCE))
+                print("************************************************************")
+                print("************************************************************")                       
+                        
+                
+                """
+                prints out the status of the bank account
+                
+                Args:
+                    self: instance of receipt
+                Side effects:
+                    print(): prints to terminal
+                """
+                #Abdul
+            
+       
+       
        
     def view_account(self):
         """
@@ -134,20 +170,20 @@ class Customer:
         """
         print(self.person)
         
-def summary():
-    """
-    abdul
-    a view of the bank database
-    """
+    def summary():
+        """
+        abdul
+        a view of the bank database
+        """
    
-    import csv
+        import csv
     
-    with open('INST326projectdata.csv') as csvfile:
-        read_csv = csv.reader(csvfile)
-    print(read_csv)
+        with open('data.csv') as csvfile:
+            read_csv = csv.reader(csvfile)
+            print(read_csv)
 
-    for row in read_csv:
-        print(row)
+        for row in read_csv:
+            print(row)
     
 
 def main(filepath):
@@ -168,6 +204,8 @@ def main(filepath):
         print(f'{MENU_CHOICES["display_one"]}. Print a Customer\'s Info')
         print(f'{MENU_CHOICES["deposit"]}. Make a Deposit')
         print(f'{MENU_CHOICES["withdraw"]}. Make a Withdrawal')
+        print(f'{MENU_CHOICES["saving"]}. Add to saving')
+        print(f'{MENU_CHOICES["receipt"]}. Print Receipt')
         print(f'{MENU_CHOICES["exit"]}. Exit')
         choice = 0
 
@@ -187,7 +225,7 @@ def main(filepath):
         # if they want to display one customer's info
         elif choice == MENU_CHOICES["display_one"]:
             try:
-                account_num = int(input("Enter an account number to deposit to: "))
+                account_num = int(input("Enter an account number to display: "))
                 customers[account_num].view_account()
             except ValueError:
                 print("Invalid number entered.")
@@ -209,6 +247,22 @@ def main(filepath):
                 print("Invalid number entered.")
             except KeyError:
                 print("Account not found.")
+        elif choice == MENU_CHOICES["saving"]:
+            try:
+                account_num = int(input("Enter the amount you want to add to saving: "))
+                customers[account_num].saving(float(input("Enter amount to add to saving: ")))
+            except ValueError:
+                print("Invalid number entered.")
+            except KeyError:
+                print("Account not found.")    
+        elif choice == MENU_CHOICES["receipt"]:
+            try:
+                account_num = int(input("Enter an account number you want print the receipt: "))
+                customers[account_num].receipt()
+            except ValueError:
+                print("Invalid number entered.")
+            except KeyError:
+                print("Account not found.")                   
         elif choice == MENU_CHOICES["exit"]:
             repeat = False
     
