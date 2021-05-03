@@ -79,6 +79,8 @@ class Customer:
             raise "You have put in the wrong numbers or you dont have an account with us try again"
     
     def withdraw(self, amount):
+         # need for receipt
+        original_ammount = self.balance
         """
         Withdraws money from the bank account
         
@@ -89,9 +91,14 @@ class Customer:
             self.balance -= amount
             # updates pandas dataframe cell for when customer data is printed
             self.person.loc["Balance"] = "${:.2f}".format(self.balance)
+            
+             # receipt
+            self.receipt(original_ammount, amount)
         
         
     def deposit(self, amount):
+         # need for receipt
+        original_ammount = self.balance
         """
         accesses the 
         
@@ -104,10 +111,13 @@ class Customer:
         # updates pandas dataframe cell for when customer data is printed
         self.person.loc["Balance"] = "${:.2f}".format(self.balance)
         
+        # receipt
+        self.receipt(original_ammount, amount)
+        
         
     def saving(self, amount):
         hjgjg
-        # need for recipte
+        # need for receipt
         original_ammount = self.balance
        
         """
