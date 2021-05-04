@@ -72,8 +72,8 @@ class Customer:
         if bankdb.checker(account_num):
             self.person =  bankdb.db.loc[account_num]
             self.person["Account"] = account_num
-            self.balance = float(self.person["Balance"][1:].replace(',', ''))
-            #self.balance = float(52519.00) remove last row in csv file for ^ to work
+            #self.balance = float(self.person["Balance"][1:].replace(',', ''))
+            self.balance = float(52519.00)
 
         else:
             raise "You have put in the wrong numbers or you dont have an account with us try again"
@@ -94,8 +94,6 @@ class Customer:
             
              # receipt
             self.receipt(original_ammount, amount)
-
-        return self.balance
         
         
     def deposit(self, amount):
@@ -115,12 +113,12 @@ class Customer:
         
         # receipt
         self.receipt(original_ammount, amount)
-
+        
+    def get_bal(self):
         return self.balance
         
-        
     def saving(self, amount):
-        hjgjg
+        
         # need for receipt
         original_ammount = self.balance
        
@@ -142,14 +140,14 @@ class Customer:
        
     def receipt(self, original_amount, amount_change):
 
-            Recipte = input('Do you want Recipte? (yes/no)').lower()
-            if Recipte == 'yes':   # etc.
-                print("Recipte Output:")
+            Receipt= input('Do you want receipt? (yes/no)').lower()
+            if Receipt == 'yes':   # etc.
+                print("Receipt Output:")
                 #print(self.person)
                 
-                R_NAME = self.person["First Name"] + self.person["Last Name"]
-                R_ACCOUNT = int(self.person["Account"])
-                R_BALANCE = self.person["Balance"]
+                R_NAME = self.person[0]
+                R_ACCOUNT = int(self.person[8])
+                R_BALANCE = self.person[4]
                 
                 print("************************************************************")        
                 print("*******************RECEIPT**********************************")
@@ -263,7 +261,7 @@ def main(filepath):
                 print("Account not found.")
         elif choice == MENU_CHOICES["saving"]:
             try:
-                account_num = int(input("Enter the amount you want to add to saving: "))
+                account_num = int(input("Enter the account number: "))
                 customers[account_num].saving(float(input("Enter amount to add to saving: ")))
             except ValueError:
                 print("Invalid number entered.")
@@ -280,6 +278,5 @@ def main(filepath):
         elif choice == MENU_CHOICES["exit"]:
             repeat = False
     
-if __name__ == '__main__':
-    # hard coded csv file name for now
-    main("data.csv")
+# hard coded csv file name for now
+main("data.csv")
