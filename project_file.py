@@ -72,8 +72,8 @@ class Customer:
         if bankdb.checker(account_num):
             self.person =  bankdb.db.loc[account_num]
             self.person["Account"] = account_num
-            #self.balance = float(self.person["Balance"][1:].replace(',', ''))
-            self.balance = float(52519.00)
+            self.balance = float(self.person["Balance"][1:].replace(',', ''))
+            #self.balance = float(52519.00) remove last row in csv file for ^ to work
 
         else:
             raise "You have put in the wrong numbers or you dont have an account with us try again"
@@ -94,6 +94,8 @@ class Customer:
             
              # receipt
             self.receipt(original_ammount, amount)
+
+        return self.balance
         
         
     def deposit(self, amount):
@@ -113,6 +115,8 @@ class Customer:
         
         # receipt
         self.receipt(original_ammount, amount)
+
+        return self.balance
         
         
     def saving(self, amount):
@@ -143,9 +147,9 @@ class Customer:
                 print("Recipte Output:")
                 #print(self.person)
                 
-                R_NAME = self.person[0]
-                R_ACCOUNT = int(self.person[8])
-                R_BALANCE = self.person[4]
+                R_NAME = self.person["First Name"] + self.person["Last Name"]
+                R_ACCOUNT = int(self.person["Account"])
+                R_BALANCE = self.person["Balance"]
                 
                 print("************************************************************")        
                 print("*******************RECEIPT**********************************")
@@ -276,5 +280,6 @@ def main(filepath):
         elif choice == MENU_CHOICES["exit"]:
             repeat = False
     
-# hard coded csv file name for now
-main("data.csv")
+if __name__ == '__main__':
+    # hard coded csv file name for now
+    main("data.csv")
