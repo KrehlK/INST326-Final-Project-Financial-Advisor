@@ -146,7 +146,7 @@ class Customer:
                 #print(self.person)
                 
                 R_NAME = self.person[0]
-                R_ACCOUNT = int(self.person[8])
+                R_ACCOUNT = int(self.person[7])
                 R_BALANCE = self.person[4]
                 
                 print("************************************************************")        
@@ -156,7 +156,7 @@ class Customer:
                 print("")        
                 print("Account: " + str(R_ACCOUNT))
                 print("ORIGINAL BALANCE: " + str(original_amount))  
-                print("DIPOSITED/WITHDRAWAL : " + str(amount_change)) 
+                print("DEPOSITED/WITHDRAWAL : " + str(amount_change)) 
                 print("AVALIABLE BALANCE: " + str(R_BALANCE))
                 print("************************************************************")
                 print("************************************************************")                       
@@ -262,7 +262,7 @@ def main(filepath):
         elif choice == MENU_CHOICES["saving"]:
             try:
                 account_num = int(input("Enter the account number: "))
-                customers[account_num].saving(float(input("Enter amount to add to saving: ")))
+                customers[account_num].withdraw(float(input("Enter amount you would like to add to saving: ")))
             except ValueError:
                 print("Invalid number entered.")
             except KeyError:
