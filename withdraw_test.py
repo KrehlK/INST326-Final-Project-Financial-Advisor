@@ -15,4 +15,4 @@ def test_withdraw(monkeypatch):
         assert c.withdraw(50.50) == 899.50
         assert c.withdraw(1000) == 899.50
         assert c.withdraw(899.51) == 899.50
-        assert c.withdraw(899.50) == 0F
+        assert c.withdraw(899.50) == 0
